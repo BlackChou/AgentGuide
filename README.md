@@ -41,10 +41,92 @@
 
 ---
 
+## 🧭 Agent 求职通关 Todo List（新增）
+
+> **不是链接收藏夹，是可以照着执行的 todo list。**
+>
+> 目标很简单：从“我学过什么”，推进到“我做出了什么、怎么验证、怎么写进简历、怎么讲给面试官听”。
+
+- 完整路线：[2026 Agent 求职通关路线](./docs/05-roadmaps/agent-job-ready-roadmap-2026.md)
+- 项目落地方法：[如何落地一个可写进简历的 Agent 项目](./docs/03-practice/05-ship-agent-project.md)
+- 工程核心专题：[Agent Harness Engineering](./docs/02-tech-stack/27-agent-harness-engineering.md)
+
+### How To Use
+
+| 你的状态 | 建议入口 |
+|:---|:---|
+| **零基础** | 从 [6步学习路径](#-从零到offer的完整路径快速导航) 开始，先建立 Agent / Workflow / RAG / Multi-Agent 的坐标系 |
+| **会 LLM 应用** | 重点补 Agent Loop、Tool Use、Context Engineering、Eval，不要只停留在 API 调用 |
+| **想做项目** | 直接进入 [实战项目](#-第四步完成实战项目可写进简历)，按“Spec → Coding → Eval → 复盘”推进 |
+| **准备面试** | 对照 [面试题库](#-第六步面试准备与-offer-冲刺)，重点准备 Agent Loop、工具设计、记忆、评测、可靠性 |
+| **只想找资料** | 看 [技术教程](#-第五步系统学习-agent-技术技术准备) 和 [资源导航](#-资源导航)，优先读官方文档、工程博客和可运行项目 |
+
+### What To Learn Now
+
+Agent 方向变化很快，当前更值得投入的是能落地、能验证、能讲清楚取舍的工程能力：
+
+| 优先级 | 方向 | 为什么重要 |
+|:---:|:---|:---|
+| 1 | **Claude Code / Codex-style Coding Agents** | 真实代码库、shell、文件编辑、测试、权限、上下文压缩，是理解 Agent 工程的最佳样本 |
+| 2 | **Agent Harness Engineering** | Agent 能力很大一部分来自 harness：工具协议、权限、状态、反馈、回放、CI、评测 |
+| 3 | **Context Engineering** | Agent 的核心不是“写提示词”，而是控制信息在正确时间以正确格式进入模型 |
+| 4 | **Skills / MCP / A2A / ACP** | Skills 负责能力复用，MCP 连接工具，A2A 连接 Agent，ACP 连接宿主应用 |
+| 5 | **Browser / Computer-Use Agents** | 浏览器和桌面操作是 Agent 从 demo 走向真实任务的重要边界 |
+| 6 | **Evaluation / Observability / Safety** | 没有 eval、trace、权限边界的 Agent，只能算 demo，不能算可交付系统 |
+
+### 8 阶段学习产出
+
+| 阶段 | 学什么 | 产出物 |
+|:---:|:---|:---|
+| Stage 0 | 区分 chatbot、workflow、agent、multi-agent | 一页笔记：为什么你的场景需要 Agent |
+| Stage 1 | 最小 Agent Loop、结构化输出、工具调用 | 50-150 行最小 Agent |
+| Stage 2 | Tool Use、RAG、Memory、引用与失败处理 | 一个资料研究助手 |
+| Stage 3 | 现代 Agent Harness：工具、权限、状态、日志、子任务 | 可调试的 harness demo |
+| Stage 4 | Multi-Agent 协调：planner / executor / reviewer / router | 一个 research → write → review 小系统 |
+| Stage 5 | Skills、MCP、A2A、ACP 与能力封装 | 一个可复用 SKILL.md 或工具协议 demo |
+| Stage 6 | Browser / Computer-Use Agent | 一个只操作公开网页的 browser agent |
+| Stage 7-8 | Eval、Observability、Safety、部署 | 20 条 eval case + 一个别人能 clone 跑的 Agent 项目 |
+
+### 项目落地 5 步法
+
+1. **建立全局认知**：先搞清楚目标项目的 agent loop、tool registry、context 拼装、memory、channel 抽象。
+2. **准备 AI 编程环境**：沉淀 `CLAUDE.md` / `AGENTS.md`、需求规格、实现计划和跨会话 todo。
+3. **建立项目理解 Skill**：把项目结构、关键模块、测试方式写成可复用的项目理解文档。
+4. **先写 Spec，再写代码**：明确目标用户、工具列表、权限策略、失败处理、成本约束、成功标准。
+5. **评测 + 归因 + 消融实验**：记录通过率、失败原因、工具调用次数、成本、延迟，把结果写进简历。
+
+### 面试深水区
+
+面试不只问“会不会 LangChain”，更会追问你有没有真正写过能跑的 Agent：
+
+- **Agent Loop**：`observe → think → act → observe`，最大步数、停止条件、错误恢复、HITL 怎么设计？
+- **Context + Cost Engineering**：上下文分层、压缩、缓存友好结构、模型路由、token 成本怎么降？
+- **Tool Design**：工具命名、description、schema、分页截断、权限分级、工具选错怎么修？
+- **Memory System**：working / episodic / semantic memory，什么值得存、怎么召回、什么时候遗忘？
+- **Eval + Governance**：component / trajectory / end-to-end eval，golden dataset 怎么来，trace 怎么审计？
+- **Reliability Engineering**：idempotency、timeout、retry、cost guard、permission tier、observability 六件套。
+
+### 简历三维表达法
+
+不要只写“基于大模型实现智能问答”。一个 Agent 项目要从三维表达：
+
+| 维度 | 怎么写 |
+|:---|:---|
+| **架构表达** | Agent loop、工具注册、会话状态、上下文裁剪、权限确认、记忆和错误恢复 |
+| **业务表达** | 业务场景、关键工具、数据源、用户路径、约束条件 |
+| **结果表达** | 评测集规模、成功率、失败类型、成本优化、消融实验结论 |
+
+示例：
+
+> 基于轻量 Agent Harness 构建垂直场景助手，使用 ReAct loop + dispatch 表注册 5 个业务工具，四层分级 context 管理 system / long-term / short-term / turn 信息；高风险操作接入三级权限确认，20 条评测 case 端到端通过率 82%，通过上下文压缩和模型路由将 token 成本降低 60%。
+
+---
+
 ## 📑 目录
 
 **🎯 核心内容**：
 - [💡 关于本项目](#-关于本项目) - Agent开发指南、转行大模型、高级RAG、大模型面试
+- [🧭 Agent 求职通关 Todo List](#-agent-求职通关-todo-list新增) - 当前优先级、8阶段学习产出、项目落地5步法
 - [🆕 求职新范式](#-求职新范式做出什么--学过什么) - 1-2-5框架、个人品牌、投递策略
 - [🚦 6步学习路径](#-从零到offer的完整路径快速导航) - 从岗位选择到拿Offer
 - [🔬 算法岗 vs 🛠️ 开发岗](#-第一步确定你的目标岗位) - 岗位选择决策树
@@ -55,6 +137,7 @@
 
 **🛠️ 快速导航**：
 - [🚀 10分钟快速开始](#-快速开始) | [💬 加入学习社群](#-联系作者--加入社群) | [❓ 常见问题](./FAQ.md)
+- [🧭 2026 Agent 求职路线](./docs/05-roadmaps/agent-job-ready-roadmap-2026.md) | [🛠️ Agent 项目落地方法](./docs/03-practice/05-ship-agent-project.md) | [🧩 Agent Harness Engineering](./docs/02-tech-stack/27-agent-harness-engineering.md)
 
 ---
 
@@ -2010,9 +2093,14 @@ python quickstart_rag_agent.py
 - 🤝 [贡献指南 (CONTRIBUTING)](./CONTRIBUTING.md) - 如何参与贡献
 
 ### 🗺️ 学习路线
+- 🧭 [2026 Agent 求职通关路线](./docs/05-roadmaps/agent-job-ready-roadmap-2026.md) - Agent Loop、Harness、Skills、Eval、项目产出的可执行路线 ⭐ 新增
 - 🚀 [AgentGuide开源学习路线（简易版）](./docs/05-roadmaps/AgentGuide开源学习路线（简易版本）.md) - 从零到Offer完整路径（8-15周）⭐ 新增
 - 🔬 [算法岗详细路线](./docs/05-roadmaps/learning-roadmap-algorithm.md) - 每日学习计划
 - 🛠️ [开发岗详细路线](./docs/05-roadmaps/learning-roadmap-development.md) - 每日学习计划
+
+### 💼 实战方法
+- 🛠️ [如何落地一个可写进简历的 Agent 项目](./docs/03-practice/05-ship-agent-project.md) - Spec、AI 编程环境、项目理解 Skill、Eval 和消融实验
+- 🧩 [Agent Harness Engineering](./docs/02-tech-stack/27-agent-harness-engineering.md) - Agent Harness 七层模型与可靠性六件套
 
 ### 📂 资源导航
 - 🤖 [Agent 资源总览](./resources/agent/) - Agent 所有资源

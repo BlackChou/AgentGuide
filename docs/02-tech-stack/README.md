@@ -54,6 +54,26 @@ Agent 评估体系
     └── 26-agent-evaluation-harness-guide.md - Harness 完全指南
 ```
 
+### 🧩 Agent Harness Engineering
+
+```
+Agent Harness 工程
+├── 运行环境
+│   └── 27-agent-harness-engineering.md - Agent Harness 七层模型
+│
+├── 核心能力
+│   ├── L1 模型层：provider 抽象
+│   ├── L2 循环层：agent loop / interrupt / resume
+│   ├── L3 工具层：tools / skills / MCP
+│   ├── L4 记忆层：JSONL / SQLite / vector
+│   ├── L5 人格层：AGENTS.md / policy
+│   ├── L6 通道层：CLI / Web / IM
+│   └── L7 自驱层：heartbeat / cron
+│
+└── 可靠性
+    └── idempotency / timeout / retry / cost guard / permission / observability
+```
+
 ---
 
 ## 📖 学习路径
@@ -89,25 +109,31 @@ Agent 评估体系
   - 12个关键因子
   - 适合：构建生产级 Agent
 
-#### 第二步：掌握 Memory 系统
+#### 第二步：掌握 Agent Harness
+- **[27-agent-harness-engineering.md](./27-agent-harness-engineering.md)** ⭐ 核心
+  - Agent Harness 七层模型
+  - 工具、权限、状态、记忆、通道、反馈和评测
+  - 适合：把裸模型变成可工作的 Agent 系统
+
+#### 第三步：掌握 Memory 系统
 - **[15-agent-memory.md](./15-agent-memory.md)** ⭐ 核心
   - Memory 的原理与实战
   - 短期/长期记忆设计
   - 适合：实现有记忆的 Agent
 
-#### 第三步：学习工具最佳实践
+#### 第四步：学习工具最佳实践
 - **[17-claude-code-best-practices.md](./17-claude-code-best-practices.md)** ⭐ 核心
   - Claude Code 的工程实践
   - 工具设计、上下文注入
   - 适合：提升 Agent 能力上限
 
-#### 第四步：模型微调（算法岗必备）
+#### 第五步：模型微调（算法岗必备）
 - **[16-sft-finetuning.md](./16-sft-finetuning.md)**
   - SFT 监督微调完全指南
   - Function Call 微调
   - 适合：算法工程师优化模型
 
-#### 第五步：总结失败经验
+#### 第六步：总结失败经验
 - **[lessons-learned.md](./lessons-learned.md)**
   - 真实项目的坑与教训
   - 如何避免常见错误
@@ -129,9 +155,10 @@ Agent 评估体系
 
 **🛠️ 开发岗方向**：
 1. 12-Factor Agent 架构 → 构建系统框架
-2. Claude Code 最佳实践 → 学习工程化方法
-3. Context Engineering 修复技巧 → 解决实际问题
-4. Agent Memory → 实现持久化存储
+2. Agent Harness Engineering → 设计工具、权限、状态、trace 和 eval
+3. Claude Code 最佳实践 → 学习工程化方法
+4. Context Engineering 修复技巧 → 解决实际问题
+5. Agent Memory → 实现持久化存储
 
 **🎯 全栈方向**（推荐）：
 - 按顺序完整学习所有文档
